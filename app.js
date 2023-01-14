@@ -1,5 +1,6 @@
 // external imports
 const express = require('express');
+const handleErrors = require('./middlewares/handleError');
 
 // internal imports
 const connectWithDB = require('./mongoose');
@@ -8,6 +9,7 @@ const routers = require('./router');
 const app = express();
 
 app.use(express.json());
+app.use(handleErrors);
 
 // database
 connectWithDB();

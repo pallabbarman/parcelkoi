@@ -1,4 +1,5 @@
 const models = require('../models');
+const { NotFound } = require('../utils/errors');
 
 const saveUser = async (user) => {
     const model = new models.User({
@@ -25,7 +26,7 @@ const userUpdate = async (user) => {
         return model;
     }
 
-    return null;
+    throw new NotFound('User is not found!');
 };
 
 const deleteUserById = async (id) => {
@@ -36,7 +37,7 @@ const deleteUserById = async (id) => {
         return result;
     }
 
-    return new Error('User is not found!');
+    throw new NotFound('User is not found!');
 };
 
 module.exports = {

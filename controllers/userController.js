@@ -1,29 +1,41 @@
 const { saveUser, getAllUsers, userUpdate, deleteUserById } = require('../services');
 
-const addUser = async (req, res) => {
-    const { body } = req;
-    await saveUser(body);
-    res.status(201).send('User added successfully!');
+const addUser = async (req, res, next) => {
+    try {
+        const { body } = req;
+        await saveUser(body);
+        return res.status(201).send('User added successfully!');
+    } catch (error) {
+        return next(error, req, res);
+    }
 };
 
-const getUsers = async (req, res) => {
-    const users = await getAllUsers();
-    res.status(200).send(users);
+const getUsers = async (req, res, next) => {
+    try {
+        const users = await getAllUsers();
+        return res.status(200).send(users);
+    } catch (error) {
+        return next(error, req, res);
+    }
 };
 
-const updateUser = async (req, res) => {
-    const { body } = req;
-    await userUpdate(body);
-    res.status(200).send("User information's are updated.");
+const updateUser = async (req, res, next) => {
+    try {
+        const { body } = req;
+        await userUpdate(body);
+        return res.status(200).send("User information's are updated.");
+    } catch (error) {
+        return next(error, req, res);
+    }
 };
 
-const deleteUser = async (req, res) => {
-    const { id } = req.params;
-    const result = await deleteUserById(id);
-    if (result instanceof Error) {
-        res.status(404).send(result.message);
-    } else {
-        res.status(200).send('User has been deleted');
+const deleteUser = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        await deleteUserById(id);
+        return res.status(200).send('User has been deleted');
+    } catch (error) {
+        return next(error, req, res);
     }
 };
 
