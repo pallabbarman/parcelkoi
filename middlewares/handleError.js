@@ -3,7 +3,7 @@ const { GeneralError } = require('../utils/errors');
 
 const handleErrors = async (err, req, res, next) => {
     if (err instanceof GeneralError) {
-        const code = err.getCode();
+        const code = await err.getCode();
         res.status(code).json({ name: err.name, message: err.message });
     }
 
