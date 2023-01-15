@@ -1,5 +1,5 @@
 {
-    "name": "advanced-node",
+    "name": "parcel-koi",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -9,7 +9,7 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
-    "author": "",
+    "author": "Pallab",
     "license": "ISC",
     "devDependencies": {
         "eslint": "8.2.0",
@@ -23,6 +23,7 @@
         "dotenv": "^16.0.3",
         "esm": "^3.2.25",
         "express": "^4.18.2",
+        "joi": "^17.7.0",
         "mongoose": "^6.8.2",
         "nodemon": "^2.0.20"
     }

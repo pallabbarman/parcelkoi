@@ -2,10 +2,7 @@ const models = require('../models');
 const { NotFound } = require('../utils/errors');
 
 const saveUser = async (user) => {
-    const model = new models.User({
-        username: user.username,
-        createdAt: new Date(),
-    });
+    const model = new models.User(user);
     const savedUser = await model.save();
     return savedUser;
 };
@@ -33,7 +30,7 @@ const deleteUserById = async (id) => {
     const allUser = models.User;
     const model = await allUser.findById(id);
     if (model) {
-        const result = allUser.deleteOne({ _id: id });
+        const result = await allUser.deleteOne({ _id: id });
         return result;
     }
 
