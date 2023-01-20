@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const connectWithDB = () => {
     mongoose.set('strictQuery', false);
     mongoose
-        .connect(process.env.MONGO_URL)
+        .connect(process.env.MONGO_URL, { useUnifiedTopology: true })
         .then(() => console.log('database connection successful!'))
         .catch((err) => console.error(err));
 };
